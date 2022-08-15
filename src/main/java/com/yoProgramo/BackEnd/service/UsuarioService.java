@@ -1,7 +1,8 @@
 
 package com.yoProgramo.BackEnd.service;
 
-import com.yoProgramo.BackEnd.model.Usuario;
+import com.yoProgramo.BackEnd.interfaces.IUsuarioService;
+import com.yoProgramo.BackEnd.entity.Usuario;
 import com.yoProgramo.BackEnd.repository.UsuarioRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,32 +16,22 @@ public class UsuarioService implements IUsuarioService  {
     
     @Override
     public List<Usuario> traerUsuarios() {
-        
         return userRepo.findAll();
     }
 
     @Override
     public void crearUsuario(Usuario user) {
-
         userRepo.save(user);
     }
 
     @Override
     public void borrarUsuario(Integer id) {
-
         userRepo.deleteById(id);
     }
 
     @Override
-    public Usuario encontrarUsuario(Integer id) {
-        
+    public Usuario encontrarUsuario(Integer id) {  
         return userRepo.findById(id).orElse(null);
-    }
-
-    @Override
-    public void modificarUsuario(Usuario user) {
-        
-        userRepo.save(user);
     }
     
 }
