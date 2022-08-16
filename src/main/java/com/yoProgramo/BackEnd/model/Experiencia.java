@@ -5,9 +5,12 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,22 +27,26 @@ public class Experiencia implements Serializable{
     @GeneratedValue (strategy = GenerationType.AUTO)
     private Long idExp;
     
+    @Column (length = 45)
     private String empresaExp;
+    @Column (length = 45)
     private String tituloExp;
     private String descrExp;
     
     @DateTimeFormat (pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
-    @Column (nullable = false)
     private Date fecha_startExp;
     
     @DateTimeFormat (pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     private Date fecha_endExp;
     
+    @Column (length = 150)
     private String logoExp;
     
-    
+    @ManyToOne (targetEntity = Persona.class, fetch = FetchType.LAZY)
+    @JoinColumn (name = "persona_id", referencedColumnName = "idPer")
+    private Persona persona;
     
     public Experiencia() {
     }

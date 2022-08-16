@@ -7,28 +7,27 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
 @Entity
-@Table (name = "provincias")
-public class Provincia implements Serializable{
+public class Grado implements Serializable{
     
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
-    private Long idProv;
+    private Long idGrado;
     
-    @Column (length = 45,nullable = false)
-    private String nombreProv;
+    @Column (length = 45)
+    private String nombreGrado;
 
-    public Provincia() {
+    public Grado() {
     }
 
-    public Provincia(Long idProv, String nombreProv) {
-        this.idProv = idProv;
-        this.nombreProv = nombreProv;
+    public Grado(Long idGrado, String nombreGrado) {
+        this.idGrado = idGrado;
+        this.nombreGrado = nombreGrado;
     }
+    
     
 }

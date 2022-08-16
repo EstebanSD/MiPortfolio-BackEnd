@@ -10,7 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,23 +28,28 @@ public class Persona implements Serializable{
     @GeneratedValue (strategy = GenerationType.AUTO) 
     private Long idPer;
     
-    @Column (nullable = false)
+    @Column (length = 45)
     private String nombrePer;
     
-    @Column (nullable = false)
+    @Column (length = 45)
     private String apellidoPer;
     
     @DateTimeFormat (pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
-    @Column (nullable = false)
     private Date fechaNac;
     
+    @Column (length = 45)
     private String emailPer;
+    @Column (length = 45)
     private String telefonoPer;
+    @Column (length = 150)
+    private String fotoPerfil;
+    @Column (length = 150)
+    private String imgBanner;
     
-    //
-    //Agregar redes, imagenes y demas
-    //
+    @ManyToOne (targetEntity = Localidad.class,fetch = FetchType.LAZY)
+    @JoinColumn (name = "localidad_id", referencedColumnName = "idProv")
+    private Localidad localidad;
     
     public Persona() {
     }

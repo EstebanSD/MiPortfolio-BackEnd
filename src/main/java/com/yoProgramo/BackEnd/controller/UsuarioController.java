@@ -1,8 +1,10 @@
 
 package com.yoProgramo.BackEnd.controller;
 
+import com.yoProgramo.BackEnd.interfaces.IPersonaService;
 import com.yoProgramo.BackEnd.model.Usuario;
 import com.yoProgramo.BackEnd.interfaces.IUsuarioService;
+import com.yoProgramo.BackEnd.model.Persona;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,6 +24,9 @@ public class UsuarioController {
     @Autowired
     private IUsuarioService userServ;
     
+    @Autowired
+    private IPersonaService perServ;
+    
     @GetMapping ("/traer")
     @ResponseBody
     public List<Usuario> traerUsuarios(){
@@ -30,6 +35,9 @@ public class UsuarioController {
     
     @PostMapping ("/crear")
     public void crearUsuario(@RequestBody Usuario user){
+        Persona perso = new Persona();
+        perServ.crearPersona(perso);
+        user.setPersona(perso);
         userServ.crearUsuario(user);
     }
     
@@ -39,11 +47,7 @@ public class UsuarioController {
     }
     
     @PutMapping ("/modificar")
-    public void modificarUsuario(@RequestBody Usuario user) {
-        Usuario usuario = userServ.encontrarUsuario(user.getIdUser());
-        usuario.setNameUser(user.getNameUser());
-        usuario.setPasswordUser(user.getPasswordUser());
-        
-        userServ.crearUsuario(usuario);
+    public void modificarUsuario(@RequestBody Usuario user) {       
+        userServ.modificarUsuario(user);
     }
 }

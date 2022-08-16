@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class UsuarioService implements IUsuarioService  {
     
     @Autowired
-    public UsuarioRepository userRepo; 
+    private UsuarioRepository userRepo; 
     
     @Override
     public List<Usuario> traerUsuarios() {
@@ -30,8 +30,12 @@ public class UsuarioService implements IUsuarioService  {
     }
 
     @Override
-    public Usuario encontrarUsuario(Long id) {  
-        return userRepo.findById(id).orElse(null);
+    public void modificarUsuario(Usuario user) {
+        Usuario usuario = userRepo.findById(user.getIdUser()).orElse(null);
+        usuario.setNameUser(user.getNameUser());
+        usuario.setPasswordUser(user.getPasswordUser());
+        
+        userRepo.save(usuario);
     }
     
 }

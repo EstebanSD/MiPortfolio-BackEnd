@@ -2,16 +2,19 @@
 package com.yoProgramo.BackEnd.model;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter @Setter
 @Entity
 @Table (name = "usuarios")
 public class Usuario implements Serializable { 
@@ -20,14 +23,15 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idUser;
     
-    @Column (nullable = false)
+    @Column (length = 45,nullable = false)
     private String nameUser;
     
-    @Column (nullable = false)
+    @Column (length = 45,nullable = false)
     private String passwordUser;
     
-    @ManyToOne (targetEntity = Persona.class,fetch = FetchType.LAZY)
-    private List<Persona> persona;
+    @OneToOne (targetEntity = Persona.class,fetch = FetchType.LAZY)
+    @JoinColumn (name = "persona_id", referencedColumnName = "idPer")
+    private Persona persona;
 
     public Usuario() {
     }
@@ -37,30 +41,5 @@ public class Usuario implements Serializable {
         this.nameUser = nameUser;
         this.passwordUser = passwordUser;
     }
-
-    public Long getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(Long idUser) {
-        this.idUser = idUser;
-    }
-
-    public String getNameUser() {
-        return nameUser;
-    }
-
-    public void setNameUser(String nameUser) {
-        this.nameUser = nameUser;
-    }
-
-    public String getPasswordUser() {
-        return passwordUser;
-    }
-
-    public void setPasswordUser(String passwordUser) {
-        this.passwordUser = passwordUser;
-    }  
-    
     
 }

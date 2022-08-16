@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class PersonaService implements IPersonaService{
     
     @Autowired
-    public PersonaRepository persRepo;
+    private PersonaRepository persRepo;
 
     @Override
     public List<Persona> traerPersonas() {
@@ -30,18 +30,16 @@ public class PersonaService implements IPersonaService{
     }
 
     @Override
-    public Persona encontrarPersona(Long id) {
-        return persRepo.findById(id).orElse(null);
-    }
-
-    @Override
     public void modificarPersona(Persona per) {
-        Persona persona = encontrarPersona(per.getIdPer());
+        Persona persona = persRepo.findById(per.getIdPer()).orElse(null);
         persona.setNombrePer(per.getNombrePer());
         persona.setApellidoPer(per.getApellidoPer());
         persona.setFechaNac(per.getFechaNac());
         persona.setEmailPer(per.getEmailPer());
         persona.setTelefonoPer(per.getTelefonoPer());
+        persona.setFotoPerfil(per.getFotoPerfil());
+        persona.setImgBanner(per.getImgBanner());
+        persona.setLocalidad(per.getLocalidad());
         
         persRepo.save(per);
     }
