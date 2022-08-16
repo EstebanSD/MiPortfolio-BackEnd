@@ -1,7 +1,7 @@
 
 package com.yoProgramo.BackEnd.controller;
 
-import com.yoProgramo.BackEnd.entity.Persona;
+import com.yoProgramo.BackEnd.model.Persona;
 import com.yoProgramo.BackEnd.interfaces.IPersonaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +34,7 @@ public class PersonaController {
     }
     
     @DeleteMapping ("/borrar/{id}")
-    public void borrarPersona(@PathVariable Integer id){
+    public void borrarPersona(@PathVariable Long id){
         perServ.borrarPersona(id);
     }
     

@@ -1,7 +1,7 @@
 
 package com.yoProgramo.BackEnd.interfaces;
 
-import com.yoProgramo.BackEnd.entity.Usuario;
+import com.yoProgramo.BackEnd.model.Usuario;
 import java.util.List;
 
 
@@ -11,8 +11,8 @@ public interface IUsuarioService {
     
     public void crearUsuario(Usuario user);
     
-    public void borrarUsuario(Integer id);
+    public void borrarUsuario(Long id);
     
-    public Usuario encontrarUsuario(Integer id);
+    public Usuario encontrarUsuario(Long id);
 
 }

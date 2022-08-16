@@ -1,7 +1,7 @@
 
 package com.yoProgramo.BackEnd.interfaces;
 
-import com.yoProgramo.BackEnd.entity.Provincia;
+import com.yoProgramo.BackEnd.model.Provincia;
 import java.util.List;
 
 

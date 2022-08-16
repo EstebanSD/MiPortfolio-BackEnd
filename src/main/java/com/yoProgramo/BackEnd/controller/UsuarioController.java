@@ -1,7 +1,7 @@
 
 package com.yoProgramo.BackEnd.controller;
 
-import com.yoProgramo.BackEnd.entity.Usuario;
+import com.yoProgramo.BackEnd.model.Usuario;
 import com.yoProgramo.BackEnd.interfaces.IUsuarioService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,15 +34,15 @@ public class UsuarioController {
     }
     
     @DeleteMapping ("/borrar/{id}")
-    public void borrarUsuario(@PathVariable Integer id){
+    public void borrarUsuario(@PathVariable Long id){
         userServ.borrarUsuario(id);
     }
     
     @PutMapping ("/modificar")
     public void modificarUsuario(@RequestBody Usuario user) {
-        Usuario usuario = userServ.encontrarUsuario(user.getId());
-        usuario.setUsername(user.getUsername());
-        usuario.setPassword(user.getPassword());
+        Usuario usuario = userServ.encontrarUsuario(user.getIdUser());
+        usuario.setNameUser(user.getNameUser());
+        usuario.setPasswordUser(user.getPasswordUser());
         
         userServ.crearUsuario(usuario);
     }

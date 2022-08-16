@@ -1,7 +1,7 @@
 
 package com.yoProgramo.BackEnd.interfaces;
 
-import com.yoProgramo.BackEnd.entity.Persona;
+import com.yoProgramo.BackEnd.model.Persona;
 import java.util.List;
 
 
@@ -11,9 +11,9 @@ public interface IPersonaService {
     
     public void crearPersona(Persona per);
     
-    public void borrarPersona(Integer id);
+    public void borrarPersona(Long id);
     
-    public Persona encontrarPersona(Integer id);
+    public Persona encontrarPersona(Long id);
     
     public void modificarPersona(Persona per);
 }
